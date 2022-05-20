@@ -1,8 +1,11 @@
 package ikhwan.binar.chapterlima.networkingviewmodel.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class GetNewsResponseItem(
     @SerializedName("author")
     val author: String,
@@ -16,4 +19,4 @@ data class GetNewsResponseItem(
     val image: String,
     @SerializedName("title")
     val title: String
-)
+) : Parcelable

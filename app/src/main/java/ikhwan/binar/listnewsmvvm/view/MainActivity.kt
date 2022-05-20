@@ -1,12 +1,16 @@
-package ikhwan.binar.listnewsmvvm
+package ikhwan.binar.listnewsmvvm.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
+import ikhwan.binar.listnewsmvvm.R
 import ikhwan.binar.listnewsmvvm.viewmodel.NewsApiViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel : NewsApiViewModel
@@ -17,10 +21,13 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[NewsApiViewModel::class.java]
 
-        viewModel.getAllNews()
-        viewModel.listNews.observe(this){
+        viewModel.news.observe(this){
             rv_news.layoutManager = LinearLayoutManager(this)
-            val adapter = NewsAdapter(it!!)
+            val adapter = NewsAdapter(it!!){ data ->
+                val intent = Intent(this, DetailActivity::class.java)
+                intent.putExtra("detail", data)
+                startActivity(intent)
+            }
             rv_news.adapter = adapter
         }
     }

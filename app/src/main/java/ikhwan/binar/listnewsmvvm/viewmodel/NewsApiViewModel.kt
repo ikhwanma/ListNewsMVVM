@@ -1,36 +1,40 @@
 package ikhwan.binar.listnewsmvvm.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ikhwan.binar.chapterlima.networkingviewmodel.model.GetNewsResponseItem
-import ikhwan.binar.latihandependencyinjection.network.ApiClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import ikhwan.binar.latihandependencyinjection.network.ApiService
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NewsApiViewModel : ViewModel() {
 
-    val listNews = MutableLiveData<List<GetNewsResponseItem>?>()
+@HiltViewModel
+class NewsApiViewModel @Inject constructor(private val apiService: ApiService) : ViewModel(){
 
-    fun getAllNews(){
-        ApiClient.instance.getNews()
-            .enqueue(object : Callback<List<GetNewsResponseItem>>{
-                override fun onResponse(
-                    call: Call<List<GetNewsResponseItem>>,
-                    response: Response<List<GetNewsResponseItem>>
-                ) {
-                    if (response.isSuccessful){
-                        listNews.postValue(response.body())
-                    }else{
-                        listNews.postValue(null)
-                    }
-                }
+    val listNews = MutableLiveData<List<GetNewsResponseItem>>()
+    val news : LiveData<List<GetNewsResponseItem>> = listNews
 
-                override fun onFailure(call: Call<List<GetNewsResponseItem>>, t: Throwable) {
-                    listNews.postValue(null)
-                }
+    val detailNews = MutableLiveData<GetNewsResponseItem>()
+    val dNews : LiveData<GetNewsResponseItem> = detailNews
 
-            })
+    init{
+        viewModelScope.launch {
+            val dataNews = apiService.getNews()
+            delay(2000)
+            listNews.postValue(dataNews)
+        }
     }
+
+    fun getDetail(id : String){
+        viewModelScope.launch {
+            val detail = apiService.getDetail(id)
+            delay(2000)
+            detailNews.postValue(detail)
+        }
+    }
+
 }
