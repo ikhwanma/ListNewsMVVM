@@ -30,5 +30,9 @@ class MainActivity : AppCompatActivity() {
             }
             rv_news.adapter = adapter
         }
+
+        fab_fav.setOnClickListener {
+            startActivity(Intent(this, FavoriteActivity::class.java))
+        }
     }
 }

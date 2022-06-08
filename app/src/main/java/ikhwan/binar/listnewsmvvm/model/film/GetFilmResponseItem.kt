@@ -1,8 +1,11 @@
 package ikhwan.binar.listnewsmvvm.model.film
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class GetFilmResponseItem(
     @SerializedName("date")
     val date: String,
@@ -16,4 +19,4 @@ data class GetFilmResponseItem(
     val image: String,
     @SerializedName("name")
     val name: String
-)
+) : Parcelable

@@ -18,4 +18,9 @@ interface ApiService {
 
     @GET("/film")
     suspend fun getFilm() : List<GetFilmResponseItem>
+
+    @GET("/film/{id}")
+    suspend fun getDetailFilm(
+        @Path("id") id : String
+    ) : GetFilmResponseItem
 }
