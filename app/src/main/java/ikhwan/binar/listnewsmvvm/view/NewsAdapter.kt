@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import ikhwan.binar.chapterlima.networkingviewmodel.model.GetNewsResponseItem
+import ikhwan.binar.listnewsmvvm.model.GetNewsResponseItem
 import ikhwan.binar.listnewsmvvm.R
 import kotlinx.android.synthetic.main.item_news.view.*
 

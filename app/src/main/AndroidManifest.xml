@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="ikhwan.binar.latihandependencyinjection.di.BaseApplication"
+        android:name=".di.BaseApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -25,7 +25,7 @@
             android:exported="false" />
         <activity
             android:name=".view.film.FilmActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".view.DetailActivity"
             android:exported="false" />

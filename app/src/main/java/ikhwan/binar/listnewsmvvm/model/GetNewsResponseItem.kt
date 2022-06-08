@@ -1,4 +1,4 @@
-package ikhwan.binar.chapterlima.networkingviewmodel.model
+package ikhwan.binar.listnewsmvvm.model
 
 
 import android.os.Parcelable

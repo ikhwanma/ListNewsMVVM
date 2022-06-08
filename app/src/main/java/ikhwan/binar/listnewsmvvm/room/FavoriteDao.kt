@@ -1,6 +1,5 @@
 package ikhwan.binar.listnewsmvvm.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao

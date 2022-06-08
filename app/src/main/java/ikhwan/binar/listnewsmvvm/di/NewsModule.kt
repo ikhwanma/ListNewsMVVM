@@ -1,15 +1,13 @@
-package ikhwan.binar.latihandependencyinjection.di
+package ikhwan.binar.listnewsmvvm.di
 
 import android.content.Context
 import androidx.room.Room
-import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.chuckerteam.chucker.api.RetentionManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ikhwan.binar.latihandependencyinjection.network.ApiService
+import ikhwan.binar.listnewsmvvm.network.ApiService
 import ikhwan.binar.listnewsmvvm.room.FavoriteDao
 import ikhwan.binar.listnewsmvvm.room.FavoriteDatabase
 import okhttp3.OkHttpClient
@@ -22,7 +20,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NewsModule {
-    val BASE_URL = "https://6254434289f28cf72b5aed04.mockapi.io/"
+    private const val BASE_URL = "https://6254434289f28cf72b5aed04.mockapi.io/"
 
     private val logging: HttpLoggingInterceptor
         get() {
